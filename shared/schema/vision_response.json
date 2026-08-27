@@ -1,0 +1,36 @@
+{
+  "product": {
+    "category": null,
+    "brand": null,
+    "product_name": null,
+    "manufacturer": null
+  },
+
+  "bis_information": {
+    "standard_number": null,
+    "licence_number": null,
+    "registration_number": null,
+    "huid": null,
+    "r_number": null,
+    "marking_text": null
+  },
+
+  "detected_markings": [],
+
+  "extracted_text": [],
+
+  "confidence": {
+    "overall": 0.0,
+    "standard_number": 0.0,
+    "licence_number": 0.0,
+    "product_category": 0.0,
+    "marking": 0.0
+  },
+
+  "image_quality": {
+    "is_readable": true,
+    "issues": []
+  },
+
+  "language": "en"
+}
