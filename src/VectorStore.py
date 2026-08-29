@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DATA_FILE = BASE_DIR / "data" / "bis_standards.json"
+DATA_FILE = BASE_DIR / "data" / "BIS_Standards.json"
 INDEX_FILE = BASE_DIR / "data" / "bis_index.faiss"
 DOCUMENTS_FILE = BASE_DIR / "data" / "bis_documents.json"
 
@@ -80,7 +80,7 @@ for item in data.get("services", []):
 
 
 if not documents:
-    raise ValueError("No documents found in bis_standards.json")
+    raise ValueError("No documents found in BIS_Standards.json")
 
 
 print(f"Total documents prepared: {len(documents)}")
