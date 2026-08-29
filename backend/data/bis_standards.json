@@ -1,0 +1,36 @@
+[
+  {
+    "standard_number": "IS 302",
+    "standard_title": "Safety of household and similar electrical appliances",
+    "product_categories": [
+      "electrical appliance",
+      "household appliance"
+    ],
+    "description": "Safety requirements for household and similar electrical appliances.",
+    "marking_information": "Relevant BIS standard marking may be applicable.",
+    "source": "BIS reference dataset"
+  },
+  {
+    "standard_number": "IS 13340",
+    "standard_title": "Domestic LPG cylinder related requirements",
+    "product_categories": [
+      "lpg cylinder",
+      "gas cylinder"
+    ],
+    "description": "Requirements relating to LPG cylinders used for domestic purposes.",
+    "marking_information": "Relevant identification and marking requirements may apply.",
+    "source": "BIS reference dataset"
+  },
+  {
+    "standard_number": "IS 694",
+    "standard_title": "PVC insulated cables",
+    "product_categories": [
+      "electric cable",
+      "electrical cable",
+      "wire"
+    ],
+    "description": "Requirements for PVC insulated electrical cables.",
+    "marking_information": "Relevant standard and manufacturer information may be marked on the product.",
+    "source": "BIS reference dataset"
+  }
+]
