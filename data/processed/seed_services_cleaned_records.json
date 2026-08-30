@@ -1,0 +1,112 @@
+[
+  {
+    "service_id": "SVC-001",
+    "service_name": "Product Certification - Scheme I (ISI Mark)",
+    "service_type": "Certification",
+    "description": "BIS Scheme I is the product certification scheme for use of the ISI mark.",
+    "user_need_supported": "Explain how a manufacturer can get a BIS licence for an ISI-marked product.",
+    "source_url": "https://www.bis.gov.in/product-certification/product-certification-process/?lang=en",
+    "source_name": "BIS Product Certification Process",
+    "verification_status": "Verified from BIS process page",
+    "notes": "Use this for workflow explanation, not product-specific legal conclusions."
+  },
+  {
+    "service_id": "SVC-002",
+    "service_name": "Product Certification - Scheme IV",
+    "service_type": "Certificate of Conformity",
+    "description": "BIS lists Scheme IV as a product certification scheme for grant of Certificate of Conformity.",
+    "user_need_supported": "Answer questions about Certificate of Conformity route where applicable.",
+    "source_url": "https://www.bis.gov.in/product-certification/product-certification-process/?lang=en",
+    "source_name": "BIS Product Certification Process",
+    "verification_status": "Verified from BIS process page",
+    "notes": "Dataset does not map Scheme IV product scope; retrieve official Scheme IV product list for final scope."
+  },
+  {
+    "service_id": "SVC-003",
+    "service_name": "Compulsory Registration Scheme - Scheme II",
+    "service_type": "Registration",
+    "description": "BIS Scheme II page lists Electronics and IT Goods under Compulsory Registration Scheme for self declaration of conformity.",
+    "user_need_supported": "Map electronics products to CRS standard numbers and explain registration-mark context.",
+    "source_url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en",
+    "source_name": "BIS Scheme II Registration Scheme product list",
+    "verification_status": "Verified from BIS list",
+    "notes": "For final answers, cite product row and latest notification/amendment."
+  },
+  {
+    "service_id": "SVC-004",
+    "service_name": "Products under Compulsory Certification",
+    "service_type": "Lookup",
+    "description": "BIS states certification is generally voluntary, but for some products central government makes compliance compulsory through QCOs.",
+    "user_need_supported": "Decide whether to search compulsory certification lists before answering product questions.",
+    "source_url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en",
+    "source_name": "BIS Products under Compulsory Certification",
+    "verification_status": "Verified from BIS overview page",
+    "notes": "Assistant should say 'check current QCO/list' for compliance-critical answers."
+  },
+  {
+    "service_id": "SVC-005",
+    "service_name": "BIS Care App",
+    "service_type": "Consumer verification",
+    "description": "BIS Care App supports verification of licence details, HUID, CRS R-number, standards lookup, labs/offices, and complaints.",
+    "user_need_supported": "Guide consumers to verify ISI mark, hallmark HUID, or CRS R-number.",
+    "source_url": "https://www.bis.gov.in/bis-apps/?lang=en",
+    "source_name": "BIS Care App page",
+    "verification_status": "Verified from BIS app page",
+    "notes": "This is a strong MVP workflow: answer plus next action in BIS Care App."
+  },
+  {
+    "service_id": "SVC-006",
+    "service_name": "Hallmarking Scheme",
+    "service_type": "Hallmarking",
+    "description": "BIS FAQ says hallmarking records purity/fineness of precious metal articles; gold and silver are under hallmarking in India.",
+    "user_need_supported": "Answer gold/silver jewellery hallmarking questions and route users to HUID verification.",
+    "source_url": "https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/hallmarking-faq/?lang=en",
+    "source_name": "BIS Hallmarking FAQ",
+    "verification_status": "Verified from BIS FAQ",
+    "notes": "For mandatory district coverage, retrieve latest hallmarking order/amendment."
+  },
+  {
+    "service_id": "SVC-007",
+    "service_name": "Foreign Manufacturers Certification Scheme",
+    "service_type": "Foreign manufacturer certification",
+    "description": "BIS FMCS grants licence to foreign manufacturers for use of Standard Mark on products conforming to Indian Standards, except notified Electronics and IT Goods under MeitY CRS.",
+    "user_need_supported": "Explain foreign manufacturer route for BIS licence.",
+    "source_url": "https://www.bis.gov.in/fmcs/fmcs-overview/?lang=en",
+    "source_name": "BIS FMCS Overview",
+    "verification_status": "Verified from BIS FMCS page",
+    "notes": "For FMCS application mode, also retrieve the how-to-apply page."
+  },
+  {
+    "service_id": "SVC-008",
+    "service_name": "FMCS Online Application through Manakonline",
+    "service_type": "Application process",
+    "description": "BIS says FMCS applications can be submitted online through Manakonline; hard-copy/offline applications accepted only up to 31 May 2026, and from 1 June 2026 only online applications are accepted.",
+    "user_need_supported": "Answer current FMCS application-channel questions.",
+    "source_url": "https://www.bis.gov.in/fmcs/certification-process/how-to-apply/?lang=en",
+    "source_name": "BIS FMCS How to Apply",
+    "verification_status": "Verified from BIS page",
+    "notes": "Date-sensitive fact verified on 2026-08-27; re-check before future demos."
+  },
+  {
+    "service_id": "SVC-009",
+    "service_name": "Manufacturer BIS Licence Requirements",
+    "service_type": "Eligibility / requirements",
+    "description": "BIS FAQ says a manufacturer needs manufacturing infrastructure, process controls, quality control, testing capability, and product conformity to the relevant Indian Standard.",
+    "user_need_supported": "Answer beginner questions on what is needed before applying for a BIS licence.",
+    "source_url": "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en",
+    "source_name": "BIS Product Certification FAQ",
+    "verification_status": "Verified from BIS FAQ",
+    "notes": "Keep as general guidance; product-specific manuals may add more requirements."
+  },
+  {
+    "service_id": "SVC-010",
+    "service_name": "Find Indian Standard by Product",
+    "service_type": "Lookup",
+    "description": "BIS FAQ directs manufacturers to search for the Indian Standard against a product on Manakonline, or query the concerned technical department if not found.",
+    "user_need_supported": "When product mapping is missing, tell the user where to search or escalate.",
+    "source_url": "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en",
+    "source_name": "BIS Product Certification FAQ",
+    "verification_status": "Verified from BIS FAQ",
+    "notes": "Use as fallback when the MVP dataset has no confident match."
+  }
+]
