@@ -1,0 +1,63 @@
+[
+  {
+    "url": "https://www.bis.gov.in/bis-apps/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/bis-apps/?lang=en",
+    "bytes": 410161
+  },
+  {
+    "url": "https://www.bis.gov.in/fmcs/certification-process/how-to-apply/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/fmcs/certification-process/how-to-apply/?lang=en",
+    "bytes": 413888
+  },
+  {
+    "url": "https://www.bis.gov.in/fmcs/fmcs-overview/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/fmcs/fmcs-overview/?lang=en",
+    "bytes": 412393
+  },
+  {
+    "url": "https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/hallmarking-faq/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/hallmarking-faq/?lang=en",
+    "bytes": 430023
+  },
+  {
+    "url": "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en",
+    "bytes": 423930
+  },
+  {
+    "url": "https://www.bis.gov.in/product-certification/product-certification-process/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/product-certification/product-certification-process/?lang=en",
+    "bytes": 414674
+  },
+  {
+    "url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en",
+    "bytes": 412421
+  },
+  {
+    "url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-i-mark-scheme/?lang=en",
+    "ok": false,
+    "error": "The read operation timed out"
+  },
+  {
+    "url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en",
+    "ok": true,
+    "content_type": "text/html; charset=UTF-8",
+    "final_url": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en",
+    "bytes": 460772
+  }
+]
