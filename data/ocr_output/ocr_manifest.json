@@ -1,0 +1,7 @@
+{
+  "created_on": "2026-08-28",
+  "pdfs_checked": 20,
+  "ocr_required_count": 1,
+  "ocr_performed_count": 0,
+  "note": "PDFs were classified using extractable text. Scanned/mixed PDFs are flagged for OCR follow-up because no local OCR engine was available."
+}
