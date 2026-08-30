@@ -17,9 +17,7 @@ ALLOWED_IMAGE_TYPES = {
 @router.post("/api/analyze")
 async def analyze_product(file: UploadFile = File(...)):
 
-    # -----------------------------
     # 1. Validate image type
-    # -----------------------------
 
     if file.content_type not in ALLOWED_IMAGE_TYPES:
         raise HTTPException(
@@ -27,9 +25,7 @@ async def analyze_product(file: UploadFile = File(...)):
             detail="Invalid image format. Please upload JPG, PNG, or WEBP."
         )
 
-    # -----------------------------
     # 2. Read image
-    # -----------------------------
 
     image_data = await file.read()
 
@@ -39,26 +35,27 @@ async def analyze_product(file: UploadFile = File(...)):
             detail="Uploaded image is empty."
         )
 
-    # -----------------------------
     # 3. TEMPORARY Vision AI output
-    # -----------------------------
-    #
-    # This will later be replaced by
-    # the real Vision AI teammate code.
-    #
+    # This will be replaced by the real Vision AI teammate code.
 
     vision_response = {
         "product": {
             "category": "electrical appliance",
             "brand": "Demo Brand",
-            "product_name": "Demo Product"
+            "product_name": "Demo Product",
+            "manufacturer": "Demo Manufacturer"
         },
         "bis_information": {
             "standard_number": "IS 302",
-            "licence_number": "",
-            "registration_number": "",
+            "licence_number": None,
+            "registration_number": None,
+            "huid": None,
+            "rn_number": None,
             "marking_text": "IS 302"
         },
+        "detected_markings": [
+            "IS 302"
+        ],
         "extracted_text": [
             "IS 302"
         ],
@@ -66,12 +63,14 @@ async def analyze_product(file: UploadFile = File(...)):
             "overall": 0.92,
             "standard_number": 0.95,
             "licence_number": 0.0,
-            "product_category": 0.90
+            "product_category": 0.90,
+            "marking": 0.95
         },
         "image_quality": {
             "is_readable": True,
             "issues": []
-        }
+        },
+        "language": "en"
     }
 
     # Validate Vision output against frozen JSON contract.
@@ -80,18 +79,14 @@ async def analyze_product(file: UploadFile = File(...)):
 
     vision_data = validated_vision.model_dump()
 
-    # -----------------------------
     # 4. BIS verification
-    # -----------------------------
 
     verification_result = verify_product(vision_data)
 
-    # -----------------------------
     # 5. RAG retrieval
-    # -----------------------------
 
-    product_category = vision_data["product"].get("category", "")
-    standard_number = vision_data["bis_information"].get("standard_number", "")
+    product_category = vision_data["product"].get("category") or ""
+    standard_number = vision_data["bis_information"].get("standard_number") or ""
 
     rag_query = f"{product_category} {standard_number} BIS standard"
 
@@ -100,9 +95,7 @@ async def analyze_product(file: UploadFile = File(...)):
         top_k=3
     )
 
-    # -----------------------------
     # 6. Final API response
-    # -----------------------------
 
     return {
         "vision_data": vision_data,
