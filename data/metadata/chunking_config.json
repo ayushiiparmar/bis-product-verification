@@ -1,9 +1,0 @@
-{
-  "strategy": "Document -> Section -> Subsection -> Clause -> Content",
-  "html_chunk_max_chars": 1800,
-  "html_chunk_overlap_chars": 180,
-  "pdf_chunking": "Page-preserving paragraph chunks; page_start/page_end set when extracted from PDF.",
-  "seed_row_chunking": "One chunk per verified standard/service row to preserve exact mapping and citation.",
-  "empty_chunk_policy": "Drop chunks under 120 characters for PDF page text; keep seed chunks because they are structured records.",
-  "citation_policy": "Each chunk must carry source_url and source_name."
-}
