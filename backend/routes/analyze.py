@@ -2,6 +2,7 @@ from fastapi import APIRouter, UploadFile, File, HTTPException
 
 from backend.models.schemas import VisionResponse
 from backend.services.verification import verify_product
+from backend.services.rag_service import get_rag_context
 
 
 router = APIRouter()
@@ -73,24 +74,38 @@ async def analyze_product(file: UploadFile = File(...)):
         }
     }
 
-    # Validate that the Vision output
-    # follows our frozen JSON contract.
+    # Validate Vision output against frozen JSON contract.
 
     validated_vision = VisionResponse(**vision_response)
 
+    vision_data = validated_vision.model_dump()
+
     # -----------------------------
-    # 4. Verification
+    # 4. BIS verification
     # -----------------------------
 
-    verification_result = verify_product(
-        validated_vision.model_dump()
+    verification_result = verify_product(vision_data)
+
+    # -----------------------------
+    # 5. RAG retrieval
+    # -----------------------------
+
+    product_category = vision_data["product"].get("category", "")
+    standard_number = vision_data["bis_information"].get("standard_number", "")
+
+    rag_query = f"{product_category} {standard_number} BIS standard"
+
+    rag_context = get_rag_context(
+        rag_query,
+        top_k=3
     )
 
     # -----------------------------
-    # 5. Final API response
+    # 6. Final API response
     # -----------------------------
 
     return {
-        "vision_data": validated_vision.model_dump(),
-        "verification": verification_result
+        "vision_data": vision_data,
+        "verification": verification_result,
+        "rag_context": rag_context
     }

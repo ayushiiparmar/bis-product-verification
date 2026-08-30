@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from VectorStore import semantic_search
+from src.VectorStore import semantic_search
 
 app = FastAPI(title="BIS RAG API")
 
