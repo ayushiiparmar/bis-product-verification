@@ -1,0 +1,17 @@
+{
+  "chunk_id": "Stable unique chunk identifier.",
+  "document_id": "Links each chunk to document_inventory.",
+  "standard_number": "Indian Standard number where applicable; blank for service/process chunks.",
+  "title": "Standard, source page, PDF, or service title.",
+  "category": "Product category, BIS service type, or document category.",
+  "section": "Highest available hierarchy level: source page, scheme, or PDF text section.",
+  "subsection": "More specific segment or row type.",
+  "clause": "Clause when available. For seed rows this stores the record/service id, not a legal standard clause.",
+  "page_start": "PDF page number when available; null for HTML/source-list rows.",
+  "page_end": "PDF page number when available; null for HTML/source-list rows.",
+  "text": "Cleaned retrieval text.",
+  "source_name": "Human-readable source name.",
+  "source_url": "Official source URL or linked official document URL.",
+  "document_version": "Captured/verified status. Date-sensitive sources should be rechecked.",
+  "extraction_method": "How the chunk was produced."
+}
