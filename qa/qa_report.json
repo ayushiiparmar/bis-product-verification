@@ -1,0 +1,56 @@
+{
+  "created_on": "2026-08-28",
+  "seed_dataset_inspection": {
+    "standards": 33,
+    "services": 10,
+    "missing_seed_source_urls": 0,
+    "status": "Seed verified records preserved."
+  },
+  "document_collection": {
+    "unique_source_pages_attempted": 9,
+    "source_pages_collected": 8,
+    "official_pdf_links_attempted": 20,
+    "pdfs_collected": 20,
+    "full_standard_documents_unavailable": 33
+  },
+  "chunk_integrity": {
+    "total_chunks": 656,
+    "duplicate_chunk_ids": [],
+    "empty_chunks": [],
+    "chunks_missing_source_url": [],
+    "chunks_missing_inventory_document": []
+  },
+  "sample_query_tests": [
+    {
+      "query": "Which BIS standard is mapped to mobile phones?",
+      "expected_match": "STD-002",
+      "matched_chunk_id": "CHUNK-00002",
+      "citation": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en"
+    },
+    {
+      "query": "Can BIS Care verify ISI mark or HUID?",
+      "expected_match": "SVC-005",
+      "matched_chunk_id": "CHUNK-00038",
+      "citation": "https://www.bis.gov.in/bis-apps/?lang=en"
+    },
+    {
+      "query": "Does an IS number prove that a product is certified?",
+      "expected_match": "safety rule in product mapping chunks",
+      "matched_chunk_id": "CHUNK-00001",
+      "citation": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en"
+    },
+    {
+      "query": "What route is used for electronics under CRS?",
+      "expected_match": "SVC-003",
+      "matched_chunk_id": "CHUNK-00036",
+      "citation": "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en"
+    }
+  ],
+  "fixes_applied": [
+    "Preserved one row per seed mapping to avoid lossy table splitting.",
+    "Dropped very short PDF chunks below 120 characters.",
+    "Used null page numbers for HTML pages and seed records to avoid fabricated pages.",
+    "Marked full Indian Standard documents unavailable instead of inventing document URLs."
+  ],
+  "pass": true
+}

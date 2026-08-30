@@ -1,0 +1,39 @@
+{
+  "created_on": "2026-08-28",
+  "total_chunks": 656,
+  "chunks_with_source_url": 656,
+  "citation_coverage_percent": 100.0,
+  "source_url_distribution": {
+    "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-ii-registration-scheme/?lang=en": 40,
+    "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/scheme-i-mark-scheme/?lang=en": 10,
+    "https://www.bis.gov.in/hallmarking-overview/hallmarking-faqs/hallmarking-faq/?lang=en": 18,
+    "https://www.bis.gov.in/product-certification/product-certification-process/?lang=en": 11,
+    "https://www.bis.gov.in/product-certification/products-under-compulsory-certification/?lang=en": 10,
+    "https://www.bis.gov.in/bis-apps/?lang=en": 10,
+    "https://www.bis.gov.in/fmcs/fmcs-overview/?lang=en": 10,
+    "https://www.bis.gov.in/fmcs/certification-process/how-to-apply/?lang=en": 10,
+    "https://www.bis.gov.in/product-certification/product-certification-faq/?lang=en": 19,
+    "https://www.bis.gov.in/wp-content/uploads/2026/08/ECGazetteNotification.pdf": 4,
+    "https://www.bis.gov.in/wp-content/uploads/2020/10/amendment.pdf": 1,
+    "https://www.bis.gov.in/wp-content/uploads/2022/07/LRS-Fee-Annex-A-and-B.pdf": 2,
+    "https://www.bis.gov.in/wp-content/uploads/2024/05/Amendment-III.pdf": 3,
+    "https://www.bis.gov.in/wp-content/uploads/2024/05/AMENDMENT%20IV.pdf": 1,
+    "https://www.bis.gov.in/wp-content/uploads/2020/12/brief-on-Hallmarking.pdf": 5,
+    "https://www.bis.gov.in/bs/BIS_Hallmarking_Regulations_2018_Gazette_notification.pdf": 383,
+    "https://www.bis.gov.in/bs/DoCA_BIS_Hallmarking_Regulations_2018_Gazette_notification.pdf": 4,
+    "https://www.bis.gov.in/wp-content/uploads/2021/11/BIS_HM_Amdt_Regulations_2021_Gazette.pdf": 8,
+    "https://www.bis.gov.in/wp-content/uploads/2020/01/Mandatory-Hallmarking-Order-15.01.2020.pdf": 14,
+    "https://www.bis.gov.in/wp-content/uploads/2020/10/Hallmarking-of-Gold-Jewellery-and-Gold-Artefacts-Amendment-Order-2020.pdf": 2,
+    "https://www.bis.gov.in/wp-content/uploads/2021/06/qc-order-June-2021-2.pdf": 19,
+    "https://www.bis.gov.in/wp-content/uploads/2022/01/QCO_HMD.pdf": 8,
+    "https://www.bis.gov.in/wp-content/uploads/2022/04/Hallmarking-of-Gold-Jewellery-and-Gold-Artefacts-Amendment-Order-2022.pdf": 18,
+    "https://www.bis.gov.in/wp-content/uploads/2023/03/GAZETTE.pdf": 4,
+    "https://www.bis.gov.in/wp-content/uploads/2023/04/Hallmarking-notification-dt-31.3.2023.pdf": 4,
+    "https://www.bis.gov.in/wp-content/uploads/2023/09/Hallmarking-Third-Amendment-Order-06092023.pdf": 18,
+    "https://www.bis.gov.in/wp-content/uploads/2024/11/Amendment-05-Nov-2024-1.pdf": 20
+  },
+  "page_citation_policy": "PDF chunks include page_start/page_end. HTML and seed dataset chunks use source URL without page number.",
+  "unresolved": [
+    "Full Indian Standards PDFs/clauses were not publicly obtained from the official pages; clause-level answers must retrieve licensed/official standard text."
+  ]
+}

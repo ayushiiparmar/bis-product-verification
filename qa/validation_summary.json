@@ -1,0 +1,9 @@
+{
+  "json_seed_valid": true,
+  "jsonl_valid": true,
+  "inventory_records": 72,
+  "chunks": 656,
+  "pdfs_checked_for_text": 20,
+  "ocr_required_count": 1,
+  "qa_pass": true
+}
