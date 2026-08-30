@@ -1,1 +1,0 @@
-OCR not required: text extraction found usable text on all pages.

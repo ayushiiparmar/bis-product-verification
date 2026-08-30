@@ -1,1 +1,0 @@
-OCR required: this PDF has scanned or mixed pages based on low extractable text. No local OCR engine was available in the runtime, so it is flagged for OCR follow-up.
