@@ -391,11 +391,11 @@
       "local_raw_path": "raw_documents\\PDF-002_support_to_other_laboratories.pdf",
       "local_cleaned_path": "cleaned_documents\\PDF-002_support_to_other_laboratories.txt",
       "file_type": "pdf",
-      "text_scanned_mixed": "scanned",
-      "OCR_required": true,
+      "text_scanned_mixed": "ocr_completed",
+      "OCR_required": false,
       "version": "Captured 2026-08-28",
-      "status": "collected_and_text_extracted",
-      "notes": "SHA256 950df16480be473959be6dcbe4d04abbd33ee7ce87cfe19e9da9f6676d113de4; pages=2; source page SRC-001."
+      "status": "collected_ocr_completed",
+      "notes": "SHA256 950df16480be473959be6dcbe4d04abbd33ee7ce87cfe19e9da9f6676d113de4; pages=2; source page SRC-001. OCR completed 2026-08-31; pages=2 integrated from local OCR text."
     },
     {
       "document_id": "PDF-003",

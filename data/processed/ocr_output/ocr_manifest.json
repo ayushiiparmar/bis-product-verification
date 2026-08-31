@@ -1,7 +1,19 @@
 {
   "created_on": "2026-08-28",
   "pdfs_checked": 20,
-  "ocr_required_count": 1,
-  "ocr_performed_count": 0,
-  "note": "PDFs were classified using extractable text. Scanned/mixed PDFs are flagged for OCR follow-up because no local OCR engine was available."
+  "ocr_required_count": 0,
+  "ocr_performed_count": 1,
+  "note": "PDF-002 OCR completed from data/processed/ocr_output/PDF-002/page-001.txt and page-002.txt; cleaned text integrated into processed documents and RAG chunks.",
+  "completed_on": "2026-08-31",
+  "completed_documents": [
+    {
+      "document_id": "PDF-002",
+      "pages": [
+        1,
+        2
+      ],
+      "ocr_text_dir": "data/processed/ocr_output/PDF-002",
+      "cleaned_path": "data/processed/PDF-002_support_to_other_laboratories.txt"
+    }
+  ]
 }

@@ -1,1 +1,1 @@
-OCR required: this PDF has scanned or mixed pages based on low extractable text. No local OCR engine was available in the runtime, so it is flagged for OCR follow-up.
+OCR completed on 2026-08-31. Text integrated from data/processed/ocr_output/PDF-002/page-001.txt and page-002.txt into data/processed/PDF-002_support_to_other_laboratories.txt.
