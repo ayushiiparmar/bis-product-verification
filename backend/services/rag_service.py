@@ -6,6 +6,30 @@ def get_rag_context(query: str, top_k: int = 3) -> list:
 
     results = semantic_search(query, top_k=top_k)
 
+    # Prefer exact BIS standard matches when a standard number
+    # is present in the query.
+    import re
+
+    match = re.search(r"\bIS\s*[:\-]?\s*(\d+)", query, re.IGNORECASE)
+
+    if match:
+        standard_digits = match.group(1)
+
+        exact_matches = []
+
+        for result in results:
+            standard = result.get("metadata", {}).get("standard_number") or ""
+
+            if re.search(
+                rf"\bIS\s*[:\-]?\s*{standard_digits}\b",
+                standard,
+                re.IGNORECASE
+            ):
+                exact_matches.append(result)
+
+        if exact_matches:
+            results = exact_matches[:top_k]
+
     context = []
 
     for result in results:

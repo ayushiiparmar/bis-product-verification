@@ -1,8 +1,13 @@
+
+import os
+import tempfile
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
 from backend.models.schemas import VisionResponse
 from backend.services.verification import verify_product
 from backend.services.rag_service import get_rag_context
+from src.vision_service import extract_product_info
 
 
 router = APIRouter()
@@ -25,7 +30,7 @@ async def analyze_product(file: UploadFile = File(...)):
             detail="Invalid image format. Please upload JPG, PNG, or WEBP."
         )
 
-    # 2. Read image
+    # 2. Read uploaded image
 
     image_data = await file.read()
 
@@ -35,58 +40,68 @@ async def analyze_product(file: UploadFile = File(...)):
             detail="Uploaded image is empty."
         )
 
-    # 3. TEMPORARY Vision AI output
-    # This will be replaced by the real Vision AI teammate code.
+    # 3. Save image temporarily for Vision AI
 
-    vision_response = {
-        "product": {
-            "category": "electrical appliance",
-            "brand": "Demo Brand",
-            "product_name": "Demo Product",
-            "manufacturer": "Demo Manufacturer"
-        },
-        "bis_information": {
-            "standard_number": "IS 302",
-            "licence_number": None,
-            "registration_number": None,
-            "huid": None,
-            "rn_number": None,
-            "marking_text": "IS 302"
-        },
-        "detected_markings": [
-            "IS 302"
-        ],
-        "extracted_text": [
-            "IS 302"
-        ],
-        "confidence": {
-            "overall": 0.92,
-            "standard_number": 0.95,
-            "licence_number": 0.0,
-            "product_category": 0.90,
-            "marking": 0.95
-        },
-        "image_quality": {
-            "is_readable": True,
-            "issues": []
-        },
-        "language": "en"
-    }
+    suffix = os.path.splitext(file.filename or "")[1].lower()
 
-    # Validate Vision output against frozen JSON contract.
+    if suffix not in {".jpg", ".jpeg", ".png", ".webp"}:
+        suffix = ".jpg"
 
-    validated_vision = VisionResponse(**vision_response)
+    temp_path = None
+
+    try:
+        with tempfile.NamedTemporaryFile(
+            delete=False,
+            suffix=suffix
+        ) as temp_file:
+            temp_file.write(image_data)
+            temp_path = temp_file.name
+
+        # 4. Real Vision AI extraction
+
+        vision_response = extract_product_info(temp_path)
+
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=str(exc)
+        )
+
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Vision AI analysis failed: {str(exc)}"
+        )
+
+    finally:
+        if temp_path and os.path.exists(temp_path):
+            os.remove(temp_path)
+
+    # 5. Validate Vision output against frozen JSON contract
+
+    try:
+        validated_vision = VisionResponse(**vision_response)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Invalid Vision AI response format: {str(exc)}"
+        )
 
     vision_data = validated_vision.model_dump()
 
-    # 4. BIS verification
+    # 6. BIS verification
 
     verification_result = verify_product(vision_data)
 
-    # 5. RAG retrieval
+    # 7. RAG retrieval
 
-    product_category = vision_data["product"].get("category") or ""
-    standard_number = vision_data["bis_information"].get("standard_number") or ""
+    product_category = (
+        vision_data["product"].get("category") or ""
+    )
+
+    standard_number = (
+        vision_data["bis_information"].get("standard_number") or ""
+    )
 
     rag_query = f"{product_category} {standard_number} BIS standard"
 
@@ -95,9 +110,76 @@ async def analyze_product(file: UploadFile = File(...)):
         top_k=3
     )
 
-    # 6. Final API response
+        # 8. Final API response
+
+    verification_status = verification_result.get(
+        "status",
+        "INCONCLUSIVE"
+    )
+
+    confidence = verification_result.get(
+        "confidence",
+        vision_data.get("confidence", {}).get("overall", 0.0)
+    )
+
+    standard = verification_result.get("standard") or {}
+
+    standard_number_result = (
+        standard.get("standard_number")
+        or vision_data["bis_information"].get("standard_number")
+        or ""
+    )
+
+    standard_title = standard.get(
+        "standard_title",
+        ""
+    )
+
+    standard_identified = standard_number_result
+
+    if standard_title:
+        standard_identified = (
+            f"{standard_number_result} - {standard_title}"
+        )
+
+    explanation = verification_result.get(
+        "reason",
+        "Verification could not be conclusively determined."
+    )
 
     return {
+        # GitHub frontend contract
+        "success": True,
+        "data": {
+            "product_name": vision_data["product"].get("product_name") or "",
+            "category": vision_data["product"].get("category") or "",
+            "brand": vision_data["product"].get("brand") or "",
+            "verification_state": verification_status,
+            "confidence_score": round(float(confidence) * 100, 2),
+            "standard_identified": standard_identified,
+            "explanation": explanation,
+            "evidence": [
+                f"Detected BIS standard: {standard_number_result}"
+                if standard_number_result
+                else "No BIS standard detected.",
+                f"Product category: {vision_data['product'].get('category')}"
+                if vision_data["product"].get("category")
+                else "Product category could not be determined."
+            ],
+            "citations": [
+                {
+                    "title": standard_title or "BIS Reference Dataset",
+                    "source": standard.get("source", "BIS"),
+                    "url": (
+                        rag_context[0].get("source_url")
+                        if rag_context
+                        else None
+                    )
+                }
+            ] if standard_title or rag_context else []
+        },
+
+        # Keep detailed backend information available
         "vision_data": vision_data,
         "verification": verification_result,
         "rag_context": rag_context

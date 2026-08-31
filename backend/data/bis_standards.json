@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "standard_number": "IS 302",
     "standard_title": "Safety of household and similar electrical appliances",
@@ -31,6 +31,19 @@
     ],
     "description": "Requirements for PVC insulated electrical cables.",
     "marking_information": "Relevant standard and manufacturer information may be marked on the product.",
+    "source": "BIS reference dataset"
+  },
+  {
+    "standard_number": "IS 4151",
+    "standard_title": "Two Wheeler Helmet",
+    "product_categories": [
+      "helmet",
+      "two wheeler helmet",
+      "two-wheeler helmet",
+      "protective helmet"
+    ],
+    "description": "Prototype knowledge-base entry for the IS 4151 standard detected from the test product image.",
+    "marking_information": "Relevant BIS standard and licence information may be marked on the product.",
     "source": "BIS reference dataset"
   }
 ]

@@ -1,4 +1,5 @@
-import json
+﻿import json
+import re
 from pathlib import Path
 
 
@@ -9,7 +10,7 @@ KB_PATH = BASE_DIR / "data" / "bis_standards.json"
 def load_knowledge_base():
     """Load BIS standards from the JSON knowledge base."""
 
-    with open(KB_PATH, "r", encoding="utf-8") as file:
+    with open(KB_PATH, "r", encoding="utf-8-sig") as file:
         return json.load(file)
 
 
@@ -19,18 +20,43 @@ def normalize_text(value: str) -> str:
     if not value:
         return ""
 
-    return " ".join(value.lower().strip().split())
+    value = value.lower().strip()
+
+    # Treat punctuation such as :, -, / as separators.
+    value = re.sub(r"[^a-z0-9]+", " ", value)
+
+    return " ".join(value.split())
+
+
+def normalize_standard_number(value: str) -> str:
+    """Normalize BIS standard numbers such as IS:4151 and IS 4151."""
+
+    if not value:
+        return ""
+
+    value = value.upper().strip()
+
+    match = re.search(r"\bIS\s*[:\-]?\s*(\d+)", value)
+
+    if match:
+        return f"IS {match.group(1)}"
+
+    return normalize_text(value).upper()
 
 
 def find_standard(standard_number: str):
-    """Find a BIS standard by standard number."""
+    """Find a BIS standard by normalized standard number."""
 
     standards = load_knowledge_base()
 
-    target = normalize_text(standard_number)
+    target = normalize_standard_number(standard_number)
 
     for standard in standards:
-        if normalize_text(standard["standard_number"]) == target:
+        known = normalize_standard_number(
+            standard.get("standard_number", "")
+        )
+
+        if known == target:
             return standard
 
     return None
@@ -80,9 +106,7 @@ def verify_product(vision_data: dict) -> dict:
     overall_confidence = confidence.get("overall", 0.0)
     standard_confidence = confidence.get("standard_number", 0.0)
 
-    # ------------------------------------------------
-    # Rule 1: Check image quality
-    # ------------------------------------------------
+    # Rule 1: Image quality
 
     if not image_quality.get("is_readable", True):
         return {
@@ -93,9 +117,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
-    # Rule 2: Standard number is missing
-    # ------------------------------------------------
+    # Rule 2: Missing standard
 
     if not standard_number:
         return {
@@ -106,9 +128,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
-    # Rule 3: Standard confidence too low
-    # ------------------------------------------------
+    # Rule 3: Low standard confidence
 
     if standard_confidence < 0.60:
         return {
@@ -119,9 +139,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
-    # Rule 4: Search BIS knowledge base
-    # ------------------------------------------------
+    # Rule 4: Find standard
 
     standard = find_standard(standard_number)
 
@@ -134,9 +152,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
-    # Rule 5: Product category missing
-    # ------------------------------------------------
+    # Rule 5: Missing product category
 
     if not product_category:
         return {
@@ -147,9 +163,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
-    # Rule 6: Compare product category
-    # ------------------------------------------------
+    # Rule 6: Category matching
 
     category_match = category_matches(
         product_category,
@@ -165,9 +179,7 @@ def verify_product(vision_data: dict) -> dict:
             "confidence": overall_confidence
         }
 
-    # ------------------------------------------------
     # Rule 7: Successful identification
-    # ------------------------------------------------
 
     return {
         "status": "STANDARD_IDENTIFIED",
